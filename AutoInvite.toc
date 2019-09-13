@@ -1,0 +1,9 @@
+## Interface: 11302
+## Title: AutoInvite
+## Author: Eulav
+## Version: 0.1
+## SavedVariablesPerCharacter: AutoInviteSettings
+
+AutoInvite.lua
+AutoInviteDefaults.lua
+AutoInviteOptions.lua
