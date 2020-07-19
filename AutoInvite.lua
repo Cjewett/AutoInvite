@@ -42,12 +42,13 @@ SLASH_AUTOINVITE1 = "/autoinvite"
 SLASH_AUTOINVITE2 = "/autoinvite help"
 SLASH_AUTOINVITE3 = "/autoinvite enable"
 SLASH_AUTOINVITE4 = "/autoinvite disable"
-SLASH_AUTOINVITE5 = "/autoinvite b"
-SLASH_AUTOINVITE6 = "/autoinvite broadcast"
-SLASH_AUTOINVITE7 = "/autoinvite k"
-SLASH_AUTOINVITE8 = "/autoinvite keyword"
-SLASH_AUTOINVITE9 = "/autoinvite c"
-SLASH_AUTOINVITE10 = "/autoinvite channel"
+SLASH_AUTOINVITE5 = "/autoinvite toggle"
+SLASH_AUTOINVITE6 = "/autoinvite b"
+SLASH_AUTOINVITE7 = "/autoinvite broadcast"
+SLASH_AUTOINVITE8 = "/autoinvite k"
+SLASH_AUTOINVITE9 = "/autoinvite keyword"
+SLASH_AUTOINVITE10 = "/autoinvite c"
+SLASH_AUTOINVITE11 = "/autoinvite channel"
 
 SlashCmdList["AUTOINVITE"] = function(msg)
 	if AutoInvite:StringIsNullOrEmpty(msg) then
@@ -66,12 +67,22 @@ SlashCmdList["AUTOINVITE"] = function(msg)
 		AutoInvite:PrintHelpInformation()
 	end
 
+	if subCommand == "toggle" then
+		if AutoInviteSettings.AutoInviteEnabled then
+			subCommand = "disable"
+		else
+			subCommand = "enable"
+		end
+	end
+
 	if subCommand == "enable" then
 		AutoInvite:SetEnableDisable(true)
+		print("AutoInvite enabled.")
 	end
 
 	if subCommand == "disable" then
 		AutoInvite:SetEnableDisable(false)
+		print("AutoInvite disabled.")
 	end
 
 	if subCommand == "broadcast" or subCommand == "b" then
@@ -92,6 +103,7 @@ function AutoInvite:PrintHelpInformation()
 	print("/autoinvite, /autoinvite help -- Displays help information for AutoInvite addon.")
 	print("/autoinvite enable -- Turns on the AutoInvite functionality.")
 	print("/autoinvite disable -- Turns off the AutoInvite functionality.")
+	print("/autoinvite toggle -- Toggles AutoInvite functionality.")
 	print("/autoinvite broadcast [keyword], /autoinvite b [keyword] -- Broadcasts the invite keyword to the guild channel and enables addon if it is disabled.")
 	print("/autoinvite keyword [keyword], /autoinvite k [keyword] -- Changes the invite keyword.")
 	print("/autoinvite channel [channel], /autoinvite c [channel] -- Changes the invite channel. Possible examples: 'SAY', 'YELL', 'PARTY', 'GUILD', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'")
