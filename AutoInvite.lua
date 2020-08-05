@@ -33,7 +33,7 @@ function AutoInvite:ProcessWhisper(text, playerName)
 		return
 	end
 
-	if text == AutoInviteSettings.AutoInviteKeyword then
+	if text:gsub("^%s*(.-)%s*$", "%1") == AutoInviteSettings.AutoInviteKeyword then
 		InviteUnit(playerName)
 	end
 end
